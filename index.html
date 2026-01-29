@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Epoxy | Обучение эпоксидной смоле</title>
+
+    <!-- 1. TAILWIND CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. TAILWIND CONFIG -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37', // Metallic Gold
+                        secondary: '#AA8C2C', // Darker Gold
+                        darkbg: '#0F0F0F',
+                        darkform: '#161616',
+                        lightgray: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-in': 'bounceIn 1s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards'
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 3. EXTERNAL LIBS -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS (Анимации) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Intl-Tel-Input (Телефон) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Intl Tel Input Overrides for Dark Mode */
+        .iti { width: 100%; }
+        .iti__country-list { background-color: #222; border-color: #444; color: white; z-index: 100; }
+        
+        /* Custom Radio Styles */
+        .radio-card:checked + div {
+            border-color: #D4AF37;
+            background-color: rgba(212, 175, 55, 0.05);
+            color: #D4AF37;
+        }
+        .radio-card:checked + div .check-icon { opacity: 1; transform: scale(1); border-color: #D4AF37; background: #D4AF37; }
+    </style>
+</head>
+<body class="bg-white text-slate-800">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold font-serif">M</div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">Master<span class="text-primary">Epoxy</span></span>
+            </div>
+            <a href="#form-section" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 border border-gray-300 text-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 hover:border-primary hover:text-primary transition-all duration-300">
+                Записаться на курс
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-16 pb-24 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6" data-aos="fade-up">
+                Создавайте шедевры из <br>
+                <span class="text-primary relative inline-block">
+                    эпоксидной смолы
+                    <svg class="absolute w-full h-3 -bottom-1 left-0 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none"/></svg>
+                </span>
+                уже через 3 дня
+            </h1>
+            
+            <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Посмотрите короткое видео и узнайте, как превратить творчество в прибыльный бизнес без художественного образования.
+            </p>
+
+            <!-- Video Container -->
+            <div class="relative w-full aspect-video bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200" data-aos="zoom-in" data-aos-delay="200">
+                <div id="video-overlay" class="absolute inset-0 z-20 cursor-pointer group">
+                    <img src="https://www.youtube.com/watch?v=gv2n5DqWb2Y.jpg" alt="Epoxy Tutorial" class="w-full h-full object-cover opacity-90 group-hover:opacity-80 transition-opacity duration-500">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-glow animate-pulse-slow group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="play" class="w-8 h-8 text-white fill-white ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-0 w-full text-center text-white font-medium tracking-wider uppercase text-sm">Нажмите для просмотра</div>
+                </div>
+                <div id="video-container" class="w-full h-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO SECTION -->
+    <section class="py-16 bg-lightgray">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-100" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Что вы получите на обучении?</h3>
+                
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 min-w-[24px] h-6 bg-primary/10 rounded-md flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4 text-primary"></i>
+                        </div>
+                        <p class="text-gray-700">Полный список материалов и проверенных поставщиков (скидки до 20%).</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 min-w-[24px] h-6 bg-primary/10 rounded-md flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4 text-primary"></i>
+                        </div>
+                        <p class="text-gray-700">3 техники заливки: «Море», «Срез камня» и «Сухоцветы».</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 min-w-[24px] h-6 bg-primary/10 rounded-md flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4 text-primary"></i>
+                        </div>
+                        <p class="text-gray-700">Блок по продажам: как фотографировать и где продавать изделия от 3000₽.</p>
+                    </li>
+                </ul>
+
+                <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                    <div class="flex gap-3">
+                        <i data-lucide="alert-circle" class="w-6 h-6 text-orange-500 shrink-0"></i>
+                        <p class="text-sm text-orange-800 font-medium">
+                            Места в группе с обратной связью ограничены. Заполните анкету ниже, чтобы забронировать место.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM SECTION -->
+    <section id="form-section" class="py-20 bg-darkbg relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="max-w-2xl mx-auto px-4 relative z-10" data-aos="fade-up">
+            <div class="bg-darkform rounded-3xl p-8 md:p-12 shadow-2xl border border-white/5">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-2">Анкета предзаписи</h2>
+                    <p class="text-gray-400">Заполните форму, и я свяжусь с вами в течение 15 минут.</p>
+                </div>
+
+                <form id="leadForm" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Ваше имя</label>
+                        <div class="relative">
+                            <i data-lucide="user" class="absolute left-4 top-3.5 w-5 h-5 text-gray-500"></i>
+                            <input type="text" name="name" required placeholder="Мария Иванова" 
+                                class="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-primary transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Телефон</label>
+                        <input type="tel" id="phone" name="phone" required 
+                            class="w-full bg-white/5 border border-white/10 rounded-xl py-3 text-white focus:outline-none focus:border-primary transition-all">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Ник в Telegram</label>
+                            <div class="relative">
+                                <i data-lucide="send" class="absolute left-4 top-3.5 w-5 h-5 text-gray-500"></i>
+                                <input type="text" name="messenger" placeholder="@username" 
+                                    class="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-primary transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Город</label>
+                            <div class="relative">
+                                <i data-lucide="map-pin" class="absolute left-4 top-3.5 w-5 h-5 text-gray-500"></i>
+                                <input type="text" name="city" required placeholder="Москва" 
+                                    class="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-primary transition-all">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="h-px bg-white/10 my-8"></div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-white mb-3">1. Был ли у вас опыт работы со смолой?</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="q_experience" value="Нет опыта" class="radio-card hidden" checked>
+                                <div class="border border-white/10 rounded-xl p-3 text-center hover:bg-white/5 transition-all text-sm text-gray-300">Нет опыта</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="q_experience" value="Пробовал(а)" class="radio-card hidden">
+                                <div class="border border-white/10 rounded-xl p-3 text-center hover:bg-white/5 transition-all text-sm text-gray-300">Пробовал(а)</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="q_experience" value="Занимаюсь" class="radio-card hidden">
+                                <div class="border border-white/10 rounded-xl p-3 text-center hover:bg-white/5 transition-all text-sm text-gray-300">Занимаюсь</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-primary hover:bg-secondary text-white font-bold py-4 rounded-xl shadow-lg transition-all uppercase tracking-widest text-sm mt-4">
+                        Получить доступ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-500 py-8 text-center text-sm border-t border-gray-900">
+        <p class="mb-2 font-serif text-gray-400 text-lg">Master Epoxy School</p>
+        <p>&copy; 2023. Все права защищены.</p>
+    </footer>
+
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+        <div class="relative bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2 font-serif">Заявка принята!</h3>
+            <p class="text-gray-600 mb-6">Я изучу вашу анкету и скоро свяжусь с вами.</p>
+            <button onclick="closeModal()" class="w-full bg-gray-900 text-white font-medium py-3 rounded-xl">Отлично</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Конфигурация
+        const GOOGLE_SCRIPT_URL = ''; // Вставьте ссылку из Google Scripts позже
+        const YOUTUBE_ID = 'lJIrF4YjHfQ';
+
+        // Инициализация библиотек
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            AOS.init({ duration: 800, once: true });
+
+            // Телефон
+            const phoneInput = document.querySelector("#phone");
+            const iti = window.intlTelInput(phoneInput, {
+                initialCountry: "auto",
+                geoIpLookup: success => fetch("https://get.geojs.io/v1/ip/country.json").then(res => res.json()).then(data => success(data.country)).catch(() => success("ru")),
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+                separateDialCode: true
+            });
+
+            // Видео
+            document.getElementById('video-overlay').addEventListener('click', function() {
+                this.style.display = 'none';
+                document.getElementById('video-container').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="rounded-2xl"></iframe>`;
+            });
+
+            // Отправка формы
+            document.getElementById('leadForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn');
+                btn.disabled = true;
+                btn.innerText = 'Отправка...';
+
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                data.phone = iti.getNumber();
+
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(data)
+                }).then(() => {
+                    document.getElementById('successModal').classList.remove('hidden');
+                    this.reset();
+                }).finally(() => {
+                    btn.disabled = false;
+                    btn.innerText = 'Получить доступ';
+                });
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
