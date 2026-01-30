@@ -19,16 +19,23 @@
                         offblack: '#111111', // Для фона формы
                     },
                     fontFamily: {
-                        // Основной шрифт (вместо Inter ставим Stolzl)
+                        // Основной шрифт
                         sans: ['Stolzl', 'Manrope', 'sans-serif'], 
-                        // Акцентный рукописный (вместо Playfair ставим Sloop Script Pro)
+                        // Акцентный рукописный
                         script: ['"Sloop Script Pro"', '"Pinyon Script"', 'cursive'], 
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards'
                     },
                     boxShadow: {
                         'glow': '0 0 30px rgba(212, 175, 55, 0.4)',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -36,7 +43,6 @@
     </script>
 
     <!-- 3. FONTS & STYLES -->
-    <!-- Подключаем временные аналоги (Manrope ~ Stolzl, Pinyon ~ Sloop), пока нет оригиналов -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Pinyon+Script&display=swap" rel="stylesheet">
     
     <!-- CSS Libs -->
@@ -48,25 +54,18 @@
 
     <style>
         /* 
-           ВАЖНО: СЮДА НУЖНО ПОДКЛЮЧИТЬ ВАШИ ФАЙЛЫ ШРИФТОВ 
-           Если файлы лежат в папке fonts, раскомментируйте код ниже:
+           МЕСТО ДЛЯ ПОДКЛЮЧЕНИЯ ЛОКАЛЬНЫХ ШРИФТОВ (Stolzl, Sloop Script Pro)
         */
-        /* 
         @font-face {
             font-family: 'Stolzl';
-            src: url('fonts/Stolzl-Regular.woff2') format('woff2');
-            font-weight: 400;
-        }
-        @font-face {
-            font-family: 'Stolzl';
-            src: url('fonts/Stolzl-Bold.woff2') format('woff2');
-            font-weight: 700;
+            src: local('Stolzl'), url('fonts/Stolzl-Regular.woff2') format('woff2'); 
+            font-weight: 400; font-display: swap;
         }
         @font-face {
             font-family: 'Sloop Script Pro';
-            src: url('fonts/SloopScriptPro.woff2') format('woff2');
+            src: local('Sloop Script Pro'), url('fonts/SloopScriptPro.woff2') format('woff2');
+            font-display: swap;
         }
-        */
 
         body { 
             font-family: 'Stolzl', 'Manrope', sans-serif; 
@@ -75,17 +74,16 @@
             scroll-behavior: smooth; 
         }
 
-        /* Заголовки, где нужен красивый завиток */
         .font-sloop {
             font-family: 'Sloop Script Pro', 'Pinyon Script', cursive;
         }
 
-        /* Переопределение стилей телефона для черно-желтой гаммы */
+        /* Override Intl Tel Input for Dark Theme */
         .iti { width: 100%; }
         .iti__country-list { background-color: #000; border: 1px solid #333; color: white; }
         .iti__selected-dial-code { color: #fff; }
         
-        /* Радио кнопки */
+        /* Custom Radio */
         .radio-card:checked + div {
             border-color: #D4AF37;
             background-color: #D4AF37;
@@ -100,7 +98,6 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
         <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <!-- Логотип текстом -->
                 <span class="text-3xl font-sloop text-black">Shtefanna Epoxy</span>
             </div>
             <a href="#form-section" class="hidden sm:inline-block px-8 py-3 bg-black text-white hover:bg-primary hover:text-black transition-all text-xs font-bold uppercase tracking-[0.2em] rounded-none">
@@ -113,7 +110,6 @@
     <section class="pt-16 pb-24 text-center px-4 bg-white relative">
         <div class="max-w-5xl mx-auto">
             
-            <!-- Main Headline: Stolzl (Massive, Bold) -->
             <h1 class="text-4xl md:text-6xl font-extrabold mb-6 text-black leading-[1.1] uppercase tracking-tight" data-aos="fade-up">
                 Превратите творчество <br>
                 в <span class="text-primary underline decoration-primary/30 underline-offset-4">стабильный доход</span>
@@ -123,7 +119,7 @@
                 Смотрите видео-урок прямо сейчас и узнайте секреты работы с эпоксидной смолой, о которых молчат 90% мастеров.
             </p>
 
-            <!-- Video Title Block: Sloop for elegance + Stolzl for structure -->
+            <!-- Video Title Block -->
             <div class="mb-8 relative inline-block" data-aos="fade-up" data-aos-delay="150">
                 <div class="absolute -top-6 -left-6 text-4xl text-primary opacity-30 font-sloop rotate-[-15deg]">Lesson</div>
                 <div class="border-l-4 border-primary pl-6 text-left">
@@ -138,7 +134,6 @@
             <div class="relative w-full aspect-video bg-black shadow-2xl overflow-hidden mt-6" data-aos="zoom-in" data-aos-delay="200">
                 <div id="video-overlay" class="absolute inset-0 z-20 cursor-pointer group bg-cover bg-center" style="background-image: url('https://img.youtube.com/vi/gv2n5DqWb2Y/maxresdefault.jpg');">
                     <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
-                    <!-- Play Button Style Updated -->
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div class="relative">
                             <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping"></div>
@@ -196,7 +191,6 @@
 
     <!-- FORM SECTION -->
     <section id="form-section" class="py-24 bg-black relative overflow-hidden">
-        <!-- Декор: Золотое свечение -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] pointer-events-none"></div>
 
         <div class="max-w-xl mx-auto px-4 relative z-10" data-aos="fade-up">
@@ -292,12 +286,15 @@
 
     <!-- JS LOGIC -->
     <script>
-        // 1. CONFIG
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8SxSBMZ43Fh0L31DKSdQC22HlcEUGK2WB0tP-gD-0tecIQyR7DnWbauDm14tYq-Gb/exec';
+        // 1. ВАША ССЫЛКА НА SCRIPT
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzqGoGvttVeTMjsOsLMf3JsDtSYizycwx9KoTN49CEOzOHoaliH4Akj3vjm-bEW9au/exec';
+        
+        // 2. НАЗВАНИЕ ЛИСТА (Строго как вы просили)
         const TARGET_SHEET = 'После получения бесплатного урока'; 
+        
         const YOUTUBE_ID = 'gv2n5DqWb2Y';
 
-        // 2. UTM PARSER
+        // UTM PARSER
         function getUTM() {
             const params = new URLSearchParams(window.location.search);
             return {
@@ -330,7 +327,7 @@
                 `;
             });
 
-            // Form Submit
+            // Form Submit Logic
             document.getElementById('leadForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const btn = document.getElementById('submitBtn');
@@ -343,14 +340,15 @@
                 const formData = new FormData(this);
                 const data = Object.fromEntries(formData.entries());
                 
+                // Добавление технических данных
                 data.phone = iti.getNumber();
-                data.targetSheet = TARGET_SHEET; 
+                data.targetSheet = TARGET_SHEET; // Передаем имя листа
                 Object.assign(data, getUTM());
 
                 // Отправка
                 fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'no-cors', // Важно для GAS
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 }).then(() => {
