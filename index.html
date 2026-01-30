@@ -276,10 +276,11 @@
             });
 
             // Видео
-            document.getElementById('video-overlay').addEventListener('click', function() {
-                this.style.display = 'none';
-                document.getElementById('video-container').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/watch?v=gv2n5DqWb2Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="rounded-2xl"></iframe>`;
-            });
+document.getElementById('video-overlay').addEventListener('click', function() {
+    this.style.display = 'none';
+    document.getElementById('video-container').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/watch?v=gv2n5DqWb2Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="rounded-2xl"></iframe>`;
+});
+
 
             // Отправка формы
             document.getElementById('leadForm').addEventListener('submit', function(e) {
@@ -312,3 +313,4 @@
     </script>
 </body>
 </html>
+
