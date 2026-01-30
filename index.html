@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Shtefanna Epoxy | Обучение эпоксидной смоле</title>
+    <title>Shtefanna Epoxy | Обучение эпоксидной смоле</title>
 
     <!-- 1. TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -109,7 +109,8 @@
             <!-- Video Container -->
             <div class="relative w-full aspect-video bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200" data-aos="zoom-in" data-aos-delay="200">
                 <div id="video-overlay" class="absolute inset-0 z-20 cursor-pointer group">
-                    <img src="https://www.youtube.com/watch?v=gv2n5DqWb2Y.jpg" alt="Epoxy Tutorial" class="w-full h-full object-cover opacity-90 group-hover:opacity-80 transition-opacity duration-500">
+                    <!-- ИСПРАВЛЕНИЕ 1: Правильная ссылка на картинку YouTube -->
+                    <img src="https://img.youtube.com/vi/gv2n5DqWb2Y/maxresdefault.jpg" alt="Epoxy Tutorial" class="w-full h-full object-cover opacity-90 group-hover:opacity-80 transition-opacity duration-500">
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div class="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-glow animate-pulse-slow group-hover:scale-110 transition-transform duration-300">
                             <i data-lucide="play" class="w-8 h-8 text-white fill-white ml-1"></i>
@@ -258,7 +259,7 @@
     <!-- JAVASCRIPT -->
     <script>
         // Конфигурация
-        const GOOGLE_SCRIPT_URL = ''; // https://script.google.com/macros/s/AKfycby8SxSBMZ43Fh0L31DKSdQC22HlcEUGK2WB0tP-gD-0tecIQyR7DnWbauDm14tYq-Gb/exec
+        const GOOGLE_SCRIPT_URL = ''; // Вставьте сюда ссылку на Google Script, если нужно
         const YOUTUBE_ID = 'gv2n5DqWb2Y';
 
         // Инициализация библиотек
@@ -275,11 +276,23 @@
                 separateDialCode: true
             });
 
-            // Видео
-document.getElementById('video-overlay').addEventListener('click', function() {
-    this.style.display = 'none';
-    document.getElementById('video-container').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/watch?v=gv2n5DqWb2Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="rounded-2xl"></iframe>`;
-});
+            // ИСПРАВЛЕНИЕ 2: Логика видео плеера
+            document.getElementById('video-overlay').addEventListener('click', function() {
+                this.style.display = 'none';
+                
+                // Используем правильную ссылку embed и добавляем автовоспроизведение
+                document.getElementById('video-container').innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen 
+                        class="rounded-2xl">
+                    </iframe>`;
+            });
 
             // Отправка формы
             document.getElementById('leadForm').addEventListener('submit', function(e) {
@@ -312,5 +325,3 @@ document.getElementById('video-overlay').addEventListener('click', function() {
     </script>
 </body>
 </html>
-
-
